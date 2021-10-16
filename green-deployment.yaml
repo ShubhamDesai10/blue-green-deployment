@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: blue-green-deployment-ns
+  labels:
+    name: blue-green-deployment-ns
+
+---
+#Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blue-deployment
+  labels:
+    app: flask-app
+    version: v1
+  namespace: blue-green-deployment-ns
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flask-app-v1
+  template:
+    metadata:
+      namespace: blue-green-deployment-ns
+      labels:
+        app: flask-app-v1
+        version: v1
+    spec:
+      containers:
+      - name: flask-app-v1
+        imagePullPolicy: Always
+        image: shubhamdesai10/flask-app:v1
+        ports:
+        - containerPort: 5000
+
+
