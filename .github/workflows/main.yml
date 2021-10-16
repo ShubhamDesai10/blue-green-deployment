@@ -53,6 +53,14 @@ jobs:
           docker tag flask-app:v1 897708493501.dkr.ecr.ap-south-1.amazonaws.com/flask-app:v1
           docker push 897708493501.dkr.ecr.ap-south-1.amazonaws.com/flask-app:v1
 
+
+      - name: install kubectl 
+        run: |
+          snap install kubectl --classic
+          kubectl version --client
+          aws eks --region ${{ secrets.REGION }} update-kubeconfig --name blue-green-cluster
+          kubectl get nodes
+
         
     
       
