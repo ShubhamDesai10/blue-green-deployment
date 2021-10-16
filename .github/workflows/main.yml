@@ -17,7 +17,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build-image:
+  build-push-image:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -30,23 +30,29 @@ jobs:
       - name: hello
         run: echo Hello, world!
         
-      - name: Docker Build and Upload to AWS ECR
-        # You may pin to the exact commit or the version.
-        # uses: vitr/actions-build-and-upload-to-ecs@7e2d171297db18c0013e04944e880b473ba39bed
-        uses: vitr/actions-build-and-upload-to-ecs@v1.0.0
+      # Configure AWS Credential
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          # The AWS access key id
-          access_key_id: ${{ SECRETS.ACCESS_KEY_ID }}
-          # The AWS secret access key
-          secret_access_key: ${{ SECRETS.ACCESS_KEY_SECRET }}
-          # AWS Account ID
-          account_id: ${{ SECRETS.ACCOUNT_ID }}
-          # Name of your ECR repository
-          repo: flask-app
-          # The AWS region
-          region: ${{ SECRETS.REGION }}
-          # Set this to true to create the repository if it does not already exist
-          create_repo: true
-          # Comma-separated string of ECR image tags
-          tags: "v1"
+          aws-access-key-id: ${{ SECRETS.ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ SECRETS.ACCESS_KEY_SECRET }}
+          aws-session-token: ${{ SECRETS.SESSION_TOKEN }}
+          aws-region: ${{ SECRETS.REGION }}
+          
+      - name: setup-docker
+        uses: docker-practice/actions-setup-docker@1.0.8
+        
+      - name: configure ECR
+        run: |
+          aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 897708493501.dkr.ecr.ap-south-1.amazonaws.com
+          
+          
+      - name: build and push docker image to ECR
+        run: |
+          docker build -t flask-app:v1 .
+          docker tag flask-app:v1 897708493501.dkr.ecr.ap-south-1.amazonaws.com/flask-app:v1
+          docker push 897708493501.dkr.ecr.ap-south-1.amazonaws.com/flask-app:latest
+
+        
+    
       
