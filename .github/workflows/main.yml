@@ -36,15 +36,15 @@ jobs:
         uses: vitr/actions-build-and-upload-to-ecs@v1.0.0
         with:
           # The AWS access key id
-          access_key_id: ${{SECRETS.ACCESS_KEY_ID}}
+          access_key_id: ${{ SECRETS.ACCESS_KEY_ID }}
           # The AWS secret access key
-          secret_access_key: ${{SECRETS.ACCESS_KEY_SECRET}}
+          secret_access_key: ${{ SECRETS.ACCESS_KEY_SECRET }}
           # AWS Account ID
-          account_id: ${{SECRETS.ACCOUNT_ID}}
+          account_id: ${{ SECRETS.ACCOUNT_ID }}
           # Name of your ECR repository
-          repo: blue-green-depl-repo
+          repo: flask-app
           # The AWS region
-          region: ${{SECRETS.REGION}}
+          region: ${{ SECRETS.REGION }}
           # Set this to true to create the repository if it does not already exist
           create_repo: true
           # Comma-separated string of ECR image tags
