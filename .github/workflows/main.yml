@@ -56,7 +56,7 @@ jobs:
 
       - name: install kubectl 
         run: |
-          snap install kubectl --classic
+          sudo snap install kubectl --classic
           kubectl version --client
           aws eks --region ${{ secrets.REGION }} update-kubeconfig --name blue-green-cluster
           kubectl get nodes
