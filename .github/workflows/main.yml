@@ -34,9 +34,9 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ SECRETS.ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ SECRETS.ACCESS_KEY_SECRET }}
-          aws-session-token: ${{ SECRETS.SESSION_TOKEN }}
+          aws-access-key-id: ASIA5CA4YRK67FU5SBEH
+          aws-secret-access-key: iC0YPgosvkMbPhpXafEaZncHWZiaaahCUraB6fiU
+          aws-session-token: IQoJb3JpZ2luX2VjEOz//////////wEaCXVzLWVhc3QtMSJHMEUCICd9fI0AyxN5/eph6Paekgx2QjOOIvdKyAhXQGziVB+lAiEAqD8wMHMkV9hd4ibPPz1HlwPqiUOKXs4iLEiuf6DmKFYqqgMIdBACGgw4OTc3MDg0OTM1MDEiDMZv++VaRKbYVVeWpSqHA8ZmWAUctQpMewVHmqBd70y+MoegIPtkUBFx46sh0t/mUGbEKz3o4fs9ydgvdShM8pXqzKFmE9Hwo0l0OKfC+56lI+JH06Se7T7LmBcj4q0WtY94KwJF2kY3+eW4+fUcVeq1FeUBIaz26sWby4dZo6DNOV7Z3X9000rDShPRqSlJ2BVDyJw5U89721DjP7FORlFzMuIw1LvG2KtQHqvHEzQ9X+1eCXWqVD63LTlmUEKxw5nxwCODBBbBqYVnhBuMu3BkE+61iIlaq1DUTU+sHhMd4RgcBJyfauwzk5O64Sbh3TBMicg4AWihOdxzjDFPHPQLHFvHcVCT+mW9ZgXSw36Cb5iTPyKtfVBg6kXMSaL93z/p3WoR4fBdzfGmo6JDGIDS2MdseQ4Py/LRCcFzTR77zhs+UIYVIkHSo9gLkjnsiaDFWEfJ/tQW62/elkAMOpMkoRj9d46tI1OFtG5eG/Q+JaoAVaWvpVHvyAPvdUZ1N9arpdmD4FwQgRx3OPuN0KxCsYeXmzIw+OmqiwY6pgEoCxg9R68oU7C9+WX6TAt3C61mgjJKXo33Tuf9626sK0cEyBYdADaWqxIW81aJKWz9ExLsQJQkd3FYIiaOJeIYWxzg58c52I/TYVWFNv8sEsgYQDT1bc2hjbcAfPpU06c1hpFoLGBPm25nLz0MOJXLY7LgxqeXoZ/7szYD/8XAcqR49f3PIu537loaWEqWzU/4cuA8VEqO1cpzuCormrZdfVJJ9e1h
           aws-region: ap-south-1
           
       - name: setup-docker
