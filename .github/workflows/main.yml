@@ -37,7 +37,7 @@ jobs:
           aws-access-key-id: ${{ SECRETS.ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ SECRETS.ACCESS_KEY_SECRET }}
           aws-session-token: ${{ SECRETS.SESSION_TOKEN }}
-          aws-region: ${{ SECRETS.REGION }}
+          aws-region: 'ap-south-1'
           
       - name: setup-docker
         uses: docker-practice/actions-setup-docker@1.0.8
