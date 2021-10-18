@@ -8,7 +8,7 @@ metadata:
 spec:
   selector:
     app: flask-app
-    version: v1
+    version: version1
   ports:
   - protocol: TCP
     port: 5000
