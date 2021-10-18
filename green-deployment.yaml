@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: blue-green-deployment-ns
+  name: bg-ns
   labels:
-    name: blue-green-deployment-ns
+    name: bg-ns
 
 ---
 #Deployment
@@ -14,7 +14,7 @@ metadata:
   labels:
     app: flask-app
     version: v1
-  namespace: blue-green-deployment-ns
+  namespace: bg-ns
 spec:
   replicas: 2
   selector:

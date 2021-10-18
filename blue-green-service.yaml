@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: flask-app-service-v1
-  namespace: blue-green-deployment-ns
+  namespace: bg-ns
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-type: nlb
 spec:
@@ -13,5 +13,4 @@ spec:
   - protocol: TCP
     port: 5000
     targetPort: 5000
-    nodePort: 30000
   type: LoadBalancer
