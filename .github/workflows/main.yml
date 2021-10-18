@@ -42,17 +42,19 @@ jobs:
       - name: setup-docker
         uses: docker-practice/actions-setup-docker@1.0.8
         
-      - name: configure ECR
-        run: |
-          aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 897708493501.dkr.ecr.ap-south-1.amazonaws.com
-          
+      # - name: configure ECR
+      #   run: |
+      #     aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 897708493501.dkr.ecr.ap-south-1.amazonaws.com
+      # docker tag flask-app:v1 897708493501.dkr.ecr.ap-south-1.amazonaws.com/flask-app:v1
+          # docker push 897708493501.dkr.ecr.ap-south-1.amazonaws.com/flask-app:v1
+
           
       - name: build and push docker image to ECR
         run: |
           docker build -t flask-app:v1 .
-          docker tag flask-app:v1 897708493501.dkr.ecr.ap-south-1.amazonaws.com/flask-app:v1
-          docker push 897708493501.dkr.ecr.ap-south-1.amazonaws.com/flask-app:v1
-
+          docker tag flask-app:v1 shubhamdesai10/flask-app:v1
+          docker push shubhamdesai10/flask-app:v1
+          
 
       - name: install kubectl 
         run: |

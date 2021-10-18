@@ -3,13 +3,14 @@ kind: Service
 metadata:
   name: flask-app-service-v1
   namespace: blue-green-deployment-ns
+  annotation: 
 spec:
   selector:
     app: flask-app-v1
     version: v1
-  type: LoadBalancer
   ports:
   - protocol: TCP
     port: 5000
     targetPort: 5000
     nodePort: 30000
+  type: LoadBalancer
