@@ -1,8 +1,5 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Blue/Green Deployment
 
-# Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
 #   push:
@@ -41,13 +38,6 @@ jobs:
           
       - name: setup-docker
         uses: docker-practice/actions-setup-docker@1.0.8
-        
-      # - name: configure ECR
-      #   run: |
-      #     aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 897708493501.dkr.ecr.ap-south-1.amazonaws.com
-      # docker tag flask-app:v1 897708493501.dkr.ecr.ap-south-1.amazonaws.com/flask-app:v1
-          # docker push 897708493501.dkr.ecr.ap-south-1.amazonaws.com/flask-app:v1
-
           
       - name: build and push docker image to ECR
         run: |
@@ -64,10 +54,11 @@ jobs:
           aws eks --region ${{ secrets.REGION }} update-kubeconfig --name blue-green-cluster
           kubectl get nodes
 
-      - name: create deployment
+      - name: create deployment a new deployment
         run: |
-          kubectl apply -f ./blue-deployment.yaml
-          kubectl apply -f ./blue-green-service.yaml
+          
+
+      - 
           
         
     
