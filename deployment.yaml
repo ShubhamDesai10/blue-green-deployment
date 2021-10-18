@@ -10,10 +10,10 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: Flask-App-V1
+  name: Flask-App-v1
   labels:
     app: flask-app
-    version: V1
+    version: ver1
   namespace: bg-ns
 spec:
   replicas: 2
@@ -25,7 +25,7 @@ spec:
       namespace: bg-ns
       labels:
         app: flask-app
-        version: V1
+        version: v1
     spec:
       containers:
       - name: flask-app
