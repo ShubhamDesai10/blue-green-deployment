@@ -42,9 +42,9 @@ jobs:
       - name: build and push docker image to ECR
         run: |
           aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 897708493501.dkr.ecr.ap-south-1.amazonaws.com
-          docker build -t flask-app:v1 .
-          docker tag flask-app:v1 897708493501.dkr.ecr.ap-south-1.amazonaws.com/flask-app:v1
-          docker push 897708493501.dkr.ecr.ap-south-1.amazonaws.com/flask-app:v1
+          docker build -t flask-app:latest .
+          docker tag flask-app:latest 897708493501.dkr.ecr.ap-south-1.amazonaws.com/flask-app:latest
+          docker push 897708493501.dkr.ecr.ap-south-1.amazonaws.com/flask-app:latest
           
 
       - name: install kubectl 
