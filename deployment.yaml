@@ -10,7 +10,7 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: Flask-App-v1
+  name: flask-app-v1
   labels:
     app: flask-app
     version: ver1
