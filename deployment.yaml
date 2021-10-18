@@ -10,7 +10,7 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: blue-deployment
+  name: Flask-App-V1
   labels:
     app: flask-app
     version: v1
@@ -19,16 +19,16 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: flask-app-v1
+      app: flask-app
   template:
     metadata:
       namespace: bg-ns
       labels:
-        app: flask-app-v1
+        app: flask-app
         version: v1
     spec:
       containers:
-      - name: flask-app-v1
+      - name: flask-app
         imagePullPolicy: Always
         image: 897708493501.dkr.ecr.ap-south-1.amazonaws.com/flask-app:v1
         ports:
