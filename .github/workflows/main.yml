@@ -51,6 +51,7 @@ jobs:
           
       - name: build and push docker image to ECR
         run: |
+          docker login -u shubhamdesai10 -p Shubham@5050
           docker build -t flask-app:v1 .
           docker tag flask-app:v1 shubhamdesai10/flask-app:v1
           docker push shubhamdesai10/flask-app:v1
