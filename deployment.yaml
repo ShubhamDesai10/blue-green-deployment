@@ -13,7 +13,7 @@ metadata:
   name: Flask-App-V1
   labels:
     app: flask-app
-    version: v1
+    version: V1
   namespace: bg-ns
 spec:
   replicas: 2
@@ -25,7 +25,7 @@ spec:
       namespace: bg-ns
       labels:
         app: flask-app
-        version: v1
+        version: V1
     spec:
       containers:
       - name: flask-app
