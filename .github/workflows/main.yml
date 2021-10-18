@@ -54,15 +54,17 @@ jobs:
           aws eks --region ${{ secrets.REGION }} update-kubeconfig --name blue-green-cluster
           kubectl get nodes
 
-      - name: create deployment a new deployment
+      - name: create a new deployment
         run: |
           export Version=$(kubectl get service flask-app-service -o=jsonpath='{.spec.selector.version}' --namespace=bg-ns)
           export VersionNumber=$(echo $Version | sed 's/[^0-9]*//g')
           export NewVersion="${Version:0:1}"$(expr $VersionNumber + 1)
-          kubectl get deployment Flask-App-$Version -o=yaml --namespace=bg-ns | sed -e "s/$Version/$NewVersion/g" | kubectl apply --namespace=bg-ns -f - #Deploy new version
+          kubectl get deployment Flask-App-$Version -o=yaml --namespace=bg-ns | sed -e "s/$Version/$NewVersion/g" | kubectl apply --namespace=bg-ns -f - 
           kubectl rollout status deployment/Flask-App-$NewVersion --namespace=bg-ns #Health Check
-          kubectl get service flask-app-service -o=yaml --namespace=bg-ns | sed -e "s/$Version/$NewVersion/g" | kubectl apply --namespace=bg-ns -f - #Update Service YAML with Green version
-          kubectl delete deployment Flask-App-$Version --namespace=bg-ns #Delete blue version
+          kubectl get service flask-app-service -o=yaml --namespace=bg-ns | sed -e "s/$Version/$NewVersion/g" | kubectl apply --namespace=bg-ns -f - 
+          kubectl delete deployment Flask-App-$Version --namespace=bg-ns 
+          kubectl get deployment -n bg-ns
+          kubectl get service -n bg-ns
           
         
     
