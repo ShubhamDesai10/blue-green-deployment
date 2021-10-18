@@ -49,7 +49,7 @@ jobs:
           # docker push 897708493501.dkr.ecr.ap-south-1.amazonaws.com/flask-app:v1
 
           
-      - name: build and push docker image to ECR
+      - name: build and push docker image to dockerhub
         run: |
           docker login -u shubhamdesai10 -p Shubham@5050
           docker build -t flask-app:v1 .
