@@ -49,12 +49,12 @@ jobs:
           # docker push 897708493501.dkr.ecr.ap-south-1.amazonaws.com/flask-app:v1
 
           
-      - name: build and push docker image to dockerhub
+      - name: build and push docker image to ECR
         run: |
-          docker login -u shubhamdesai10 -p Shubham@5050
+          aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 897708493501.dkr.ecr.ap-south-1.amazonaws.com
           docker build -t flask-app:v1 .
-          docker tag flask-app:v1 shubhamdesai10/flask-app:v1
-          docker push shubhamdesai10/flask-app:v1
+          docker tag flask-app:v1 897708493501.dkr.ecr.ap-south-1.amazonaws.com/flask-app:v1
+          docker push 897708493501.dkr.ecr.ap-south-1.amazonaws.com/flask-app:v1
           
 
       - name: install kubectl 
@@ -68,8 +68,7 @@ jobs:
         run: |
           kubectl apply -f ./blue-deployment.yaml
           kubectl apply -f ./blue-green-service.yaml
-          kubectl get deployment -n blue-green-deployment-ns
-          kubectl get service -n blue-green-deployment-ns
+          
         
     
       

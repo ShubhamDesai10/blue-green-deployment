@@ -30,6 +30,6 @@ spec:
       containers:
       - name: flask-app-v1
         imagePullPolicy: Always
-        image: shubhamdesai10/flask-app:v1
+        image: 897708493501.dkr.ecr.ap-south-1.amazonaws.com/flask-app:v1
         ports:
         - containerPort: 5000
