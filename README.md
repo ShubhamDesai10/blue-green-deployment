@@ -1,5 +1,14 @@
 # blue-green-deployment
 
+- A Blue/Green deployment is a way of accomplishing a zero-downtime upgrade to an existing application.
+- The “Blue” version is the currently running copy of the application 
+- The “Green” version is the new version.
+- Once the green version is ready, traffic is rerouted to the new version.
+
+## architecture
+
+> ![architecture](AWSInfra.jpg)
+
 ## configure AWS credentials to access the resources
 > using action -> aws-actions/configure-aws-credentials@v1
 
