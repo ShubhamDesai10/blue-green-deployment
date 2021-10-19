@@ -51,6 +51,3 @@
 > kubectl get service -n bg-ns
 
 
-
-
-
