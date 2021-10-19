@@ -1,31 +1,20 @@
 name: Blue/Green Deployment
 
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  # push:
+  #   branches: [ main ]
+  # pull_request:
+  #   branches: [ main ]
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
       
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build-push-image:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: hello
-        run: echo Hello, world!
         
       # Configure AWS Credential
       - name: Configure AWS Credentials
@@ -50,9 +39,7 @@ jobs:
       - name: install kubectl 
         run: |
           sudo snap install kubectl --classic
-          kubectl version --client
           aws eks --region ${{ secrets.REGION }} update-kubeconfig --name blue-green-cluster
-          kubectl get nodes
 
       - name: create a new deployment
         run: |
@@ -60,7 +47,7 @@ jobs:
           export VersionNumber=$(echo $Version | sed 's/[^0-9]*//g')
           export NewVersion="${Version:0:7}"$(expr $VersionNumber + 1)
           kubectl get deployment flask-app-$Version -o=yaml --namespace=bg-ns | sed -e "s/$Version/$NewVersion/g" | kubectl apply --namespace=bg-ns -f - 
-          kubectl rollout status deployment/flask-app-$NewVersion --namespace=bg-ns #Health Check
+          kubectl rollout status deployment/flask-app-$NewVersion --namespace=bg-ns 
           kubectl get service flask-app-service -o=yaml --namespace=bg-ns | sed -e "s/$Version/$NewVersion/g" | kubectl apply --namespace=bg-ns -f - 
           kubectl delete deployment flask-app-$Version --namespace=bg-ns 
           kubectl get deployment -n bg-ns
